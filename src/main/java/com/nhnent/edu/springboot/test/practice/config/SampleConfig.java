@@ -21,13 +21,13 @@ public class SampleConfig {
     @Bean
     CommandLineRunner createAccounts() {
         return (String... args) -> accountRepository.save(Arrays.asList(
-            Account.forCreate("mandoo", "만두"),
-            Account.forCreate("jordan", "조던"),
-            Account.forCreate("dongmyo", "동묘"),
-            Account.forCreate("doogi", "두기"),
-            Account.forCreate("comtin", "콤틴"),
-            Account.forCreate("franky", "프랑키"),
-            Account.forCreate("manti", "만티"),
-            Account.forCreate("bureung", "부릉")));
+            Account.forCreate("mandoo", "SKY"),
+            Account.forCreate("jordan", "JMJ"),
+            Account.forCreate("dongmyo", "SDM"),
+            Account.forCreate("doogi", "LSM"),
+            Account.forCreate("comtin", "LKH"),
+            Account.forCreate("franky", "PJM"),
+            Account.forCreate("many", "JJB"),
+            Account.forCreate("bureung", "KBB")));
     }
 }
