@@ -18,19 +18,27 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * WebMvcTest와 MockBean을 이용한 웹 부분은 통합으로 로딩하고 나머지는 단위적으로 테스트
- * WebMvcTestとMockBeanを利用したウェブの部分は、統合的にロードし、残りは単位的にテスト
+ * WebMvcTest와 MockBean을 이용한 Controller 테스트입니다. 
+ * WebMvcTestとMockBeanを利用したControllerテストです。
  *
- * @author myeongju.jung
  */
 @RunWith(SpringRunner.class)
-@SuppressWarnings({"WeakerAccess", "SpringJavaAutowiredMembersInspection"})
-// TODO 1-1 @Web___Test(AccountRestController.class)
+/**
+ * TODO 1-1 AccountRestController 만 테스트 할 수 있도록 WebMvcTest 애너테이션을 설정해 주세요.
+ * TODO 1-1 AccountRestControllerのみテストできるようにWebMvcTestアナテーションを設定してください。
+ * 
+ * hint : @Web___Test(AccountRestController.class)
+ */
 public class AccountRestControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    // TODO 1-2 : @M___B___ : hint Mocking
+    /**
+     * TODO 1-2 AccountService는 실제 구현체를 사용하지 않고 Mocking 하여 설정해 주세요.
+     * TODO 1-2 AccountServiceは、実際の実装を使用せずにMockingて設定してください。
+     * 
+     * hint : @M___B___
+     */
     AccountService accountService;
 
     @Test
@@ -43,13 +51,15 @@ public class AccountRestControllerTest {
         mockMvc.perform(get("/api/accounts/{0}", accountId)
                             .accept(MediaType.APPLICATION_JSON))
                // then
-        	   // FIXME 1-3 : 200 성공 응답으로 변경 > isNotFound -> ???
-               // FIXME 1-3 : 200 成功応答に変更 > isNotFound -> ???
+        	   // TODO 1-3 : 요청의 결과는 200 OK 입니다. 검증 코드를 수정해 주세요.
+               // TODO 1-3 : リクエストの結果は、200 OKです。検証コードを修正してください。
                .andExpect(status().isNotFound()) 
                .andExpect(jsonPath("$.accountId").value(account.getAccountId()))
-               .andExpect(jsonPath("$.name").value(account.toString()))  // FIXME 1-4 : 단언이 성공하게 변경 > toString -> ???
+               .andExpect(jsonPath("$.name").value(account.getName()))  
         ;
         // then2
-        then(accountService).should(times(2)).getAccount(accountId);    // ?!
+        // TODO 1-4 : 이 테스트케이스에서 accountService 는 1회 실행됩니다. 아래에서 잘 못된 부분을 수정해 주세요.
+        // TODO 1-4 : このテストケースではaccountServiceは1回実行されます。下で間違った部分を修正してください。
+        then(accountService).should(times(2)).getAccount(accountId);
     }
 }

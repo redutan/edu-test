@@ -9,10 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 
-/**
- * @author myeongju.jung
- */
-@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Configuration
 public class SampleConfig {
     @Autowired

@@ -40,8 +40,9 @@ public class AccountServiceTest {
     }
 
     /**
-     * 1번 계정을 조회하고 검증하는 테스트케이스
-     * 1回アカウントを照会して検証するテストケース
+     * 첫번째 계정을 조회하고 내용을 검증하는 테스트케이스 입니다.
+     * 最初のアカウントを照会して、内容を検証するためのテストケースです。
+     * 
      * Hint : {@link com.nhnent.edu.springboot.test.practice.config.SampleConfig}
      */
     @Test
@@ -52,8 +53,8 @@ public class AccountServiceTest {
         Account account = service.getAccount(accountId);
         // then
         assertThat(account.getAccountId(), is(accountId));
-        // FIXME 2-1 : 통과하게 수정요망
-        // FIXME 2-1 : 通過することに変更し要望
+        // TODO 2-1 : 테스트가 통과할 수 있도록 다음의 코드를 수정해 주세요.
+        // TODO 2-1 : テストに合格することができるように、次のコードを修正してください。
         assertThat(account.getUserId(), is(""));
         assertThat(account.getCreatedAt(), is(lessThan(null)));
     }
