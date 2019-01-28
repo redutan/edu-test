@@ -1,7 +1,7 @@
-package com.nhnent.edu.springboot.test.practice.account.ui;
+package com.example.test.practice.account.ui;
 
-import com.nhnent.edu.springboot.test.practice.account.Account;
-import com.nhnent.edu.springboot.test.practice.account.application.AccountService;
+import com.example.test.practice.account.application.AccountService;
+import com.example.test.practice.account.Account;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

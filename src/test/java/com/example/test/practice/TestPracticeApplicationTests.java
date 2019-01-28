@@ -1,4 +1,4 @@
-package com.nhnent.edu.springboot.test.practice;
+package com.example.test.practice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

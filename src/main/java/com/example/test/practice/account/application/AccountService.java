@@ -1,7 +1,7 @@
-package com.nhnent.edu.springboot.test.practice.account.application;
+package com.example.test.practice.account.application;
 
-import com.nhnent.edu.springboot.test.practice.account.Account;
-import com.nhnent.edu.springboot.test.practice.account.AccountRepository;
+import com.example.test.practice.account.Account;
+import com.example.test.practice.account.AccountRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +22,10 @@ public class AccountService {
     }
 
     public Account getAccount(Long accountId) {
-        return accountRepository.findOne(accountId);
+        Account result = accountRepository.findOne(accountId);
+        if (result == null) {
+            throw new AccountNotFoundException(accountId);
+        }
+        return result;
     }
 }

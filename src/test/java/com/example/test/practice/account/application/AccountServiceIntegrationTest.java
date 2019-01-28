@@ -1,13 +1,13 @@
-package com.nhnent.edu.springboot.test.practice.account.application;
+package com.example.test.practice.account.application;
 
-import com.nhnent.edu.springboot.test.practice.account.Account;
+import com.example.test.practice.account.Account;
+import com.example.test.practice.config.SampleConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)    // !!
-public class AccountServiceTest {
+public class AccountServiceIntegrationTest {
     @Autowired
     AccountService service;
 
@@ -34,8 +34,8 @@ public class AccountServiceTest {
 
     private void assertAccount(Account account) {
         assertThat(account.getAccountId(), is(notNullValue()));
-        assertThat(account.getUserId(), is(notNullValue()));
-        assertThat(account.getName(), is(notNullValue()));
+        assertThat(account.getBalance(), is(greaterThanOrEqualTo(0L)));
+        assertThat(account.getDepositor(), is(notNullValue()));
         assertThat(account.getCreatedAt(), is(notNullValue()));
     }
 
@@ -43,7 +43,7 @@ public class AccountServiceTest {
      * 첫번째 계정을 조회하고 내용을 검증하는 테스트케이스 입니다.
      * 最初のアカウントを照会して、内容を検証するためのテストケースです。
      * 
-     * Hint : {@link com.nhnent.edu.springboot.test.practice.config.SampleConfig}
+     * Hint : {@link SampleConfig}
      */
     @Test
     public void getAccount() {
@@ -55,7 +55,8 @@ public class AccountServiceTest {
         assertThat(account.getAccountId(), is(accountId));
         // TODO 2-1 : 테스트가 통과할 수 있도록 다음의 코드를 수정해 주세요.
         // TODO 2-1 : テストに合格することができるように、次のコードを修正してください。
-        assertThat(account.getUserId(), is(""));
+        assertThat(account.getBalance(), is(0L));
+        assertThat(account.getDepositor(), is(""));
         assertThat(account.getCreatedAt(), is(lessThan(null)));
     }
 }

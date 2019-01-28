@@ -1,7 +1,7 @@
-package com.nhnent.edu.springboot.test.practice.account.ui;
+package com.example.test.practice.account.ui;
 
-import com.nhnent.edu.springboot.test.practice.account.Account;
-import com.nhnent.edu.springboot.test.practice.account.application.AccountService;
+import com.example.test.practice.account.application.AccountService;
+import com.example.test.practice.account.Account;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class AccountRestControllerTest {
                // TODO 1-3 : リクエストの結果は、200 OKです。検証コードを修正してください。
                .andExpect(status().isNotFound()) 
                .andExpect(jsonPath("$.accountId").value(account.getAccountId()))
-               .andExpect(jsonPath("$.name").value(account.getName()))  
+               .andExpect(jsonPath("$.balance").value(account.getDepositor()))
         ;
         // then2
         // TODO 1-4 : 이 테스트케이스에서 accountService 는 1회 실행됩니다. 아래에서 잘 못된 부분을 수정해 주세요.
