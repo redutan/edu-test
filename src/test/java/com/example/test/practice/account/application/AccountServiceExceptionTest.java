@@ -39,13 +39,14 @@ public class AccountServiceExceptionTest {
         System.out.println("End getAccount_notExists"); // 실행 안 됨
     }
 
+    // TODO 해당 테스트 오류를 수정하시오
     @Test
     public void getAccount_notExists2() {
         // given
         final Long accountId = 13L;
 
         thrown.expect(AccountNotFoundException.class);
-        thrown.expectMessage("계좌를 찾을 수가 없습니다 : " + accountId);
+        thrown.expectMessage("계좌를 찾을 수가 없습니다 : ");
 
         when(accountRepository.findOne(accountId)).thenReturn(null);
         // when
