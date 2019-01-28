@@ -41,8 +41,7 @@ public class AccountServiceIntegrationTest {
 
     /**
      * 첫번째 계정을 조회하고 내용을 검증하는 테스트케이스 입니다.
-     * 最初のアカウントを照会して、内容を検証するためのテストケースです。
-     * 
+     *
      * Hint : {@link SampleConfig}
      */
     @Test
@@ -53,8 +52,7 @@ public class AccountServiceIntegrationTest {
         Account account = service.getAccount(accountId);
         // then
         assertThat(account.getAccountId(), is(accountId));
-        // TODO 2-1 : 테스트가 통과할 수 있도록 다음의 코드를 수정해 주세요.
-        // TODO 2-1 : テストに合格することができるように、次のコードを修正してください。
+        // TODO 2-1 : 테스트가 통과할 수 있도록 아래 코드들을 수정해 주세요.
         assertThat(account.getBalance(), is(0L));
         assertThat(account.getDepositor(), is(""));
         assertThat(account.getCreatedAt(), is(lessThan(null)));
