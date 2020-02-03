@@ -12,6 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Optional;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.*;
 
 /**
@@ -48,7 +49,7 @@ public class AccountServiceExceptionTest {
         final Long accountId = 13L;
 
         thrown.expect(AccountNotFoundException.class);
-        thrown.expectMessage("계좌를 찾을 수가 없습니다 : ");
+        thrown.expectMessage(is("계좌를 찾을 수가 없습니다: "));
 
         when(accountRepository.findById(accountId)).thenReturn(Optional.empty());
         // when
