@@ -23,6 +23,7 @@ public class RefundServiceTest {
     public long amount;
     @Parameterized.Parameter(1)   // data() 항 항목의 두번째 인자
     public long refundFee;
+
     Order order;
     RefundService refundService;
 
