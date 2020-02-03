@@ -20,19 +20,27 @@ public class Account {
     private long balance;
     private ZonedDateTime createdAt;
 
+    @Override
+    public String toString() {
+        return "Account{" +
+               "accountId=" + accountId +
+               ", depositor='" + depositor + '\'' +
+               ", balance=" + balance +
+               ", createdAt=" + createdAt +
+               '}';
+    }
+
     @SuppressWarnings("WeakerAccess")
     Account() {
     }
 
-    public static Account forCreate(long balance, String depositor) {
+    public Account (long balance, String depositor) {
         if (balance < 0) {
             throw new IllegalArgumentException("balance must be greater than 0");
         }
-        Account result = new Account();
-        result.balance = balance;
-        result.depositor = depositor;
-        result.createdAt = ZonedDateTime.now();
-        return result;
+        this.balance = balance;
+        this.depositor = depositor;
+        this.createdAt = ZonedDateTime.now();
     }
 
     public Long getAccountId() {
@@ -56,16 +64,10 @@ public class Account {
     }
 
     public void withDraw(long money) {
+        if (money > balance) {
+            throw new BalanceNotEnoughException();
+        }
         this.balance -= money;
-    }
-
-    @Override
-    public String toString() {
-        return "Account{" +
-               "accountId=" + accountId +
-               ", balance='" + balance + '\'' +
-               ", createdAt=" + createdAt +
-               '}';
     }
 
     @Override

@@ -8,7 +8,9 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
@@ -31,7 +33,7 @@ public class AccountServiceExceptionTest {
         // given
         final Long accountId = 13L;
 
-        when(accountRepository.findOne(accountId)).thenReturn(null);
+        when(accountRepository.findById(accountId)).thenReturn(Optional.empty());
         // when
         @SuppressWarnings("unused")
         Account result = accountService.getAccount(accountId);
@@ -39,7 +41,7 @@ public class AccountServiceExceptionTest {
         System.out.println("End getAccount_notExists"); // 실행 안 됨
     }
 
-    // TODO 해당 테스트 오류를 수정하시오
+    // TODO 4-1: 해당 테스트 오류를 수정하시오
     @Test
     public void getAccount_notExists2() {
         // given
@@ -48,7 +50,7 @@ public class AccountServiceExceptionTest {
         thrown.expect(AccountNotFoundException.class);
         thrown.expectMessage("계좌를 찾을 수가 없습니다 : ");
 
-        when(accountRepository.findOne(accountId)).thenReturn(null);
+        when(accountRepository.findById(accountId)).thenReturn(Optional.empty());
         // when
         @SuppressWarnings("unused")
         Account result = accountService.getAccount(accountId);

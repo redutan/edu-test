@@ -14,18 +14,23 @@ public class AccountTest {
 
     @Before
     public void setUp() {
-        account = Account.forCreate(10_000L, "jordan");
+        account = new Account(10_000L, "jordan");
     }
 
     @Test
     public void getBalance() throws Exception {
         assertEquals("10,000원으로 계좌 생성 후 잔고 조회", 10_000L, account.getBalance());
 
-        account = Account.forCreate(1_000L, "comptin");
+        account = new Account(1_000L, "comptin");
         assertEquals("1,000원으로 계좌 생성 후 잔고 조회", 1_000L, account.getBalance());
 
-        account = Account.forCreate(0L, "mandoo");
+        account = new Account(0L, "mandoo");
         assertEquals("0원으로 계좌 생성 후 잔고 조회", 0L, account.getBalance());
+    }
+
+    @Test(expected = BalanceNotEnoughException.class)
+    public void withdraw_overBalance() throws Exception {
+        account.withDraw(11_000L);
     }
 
     @Test

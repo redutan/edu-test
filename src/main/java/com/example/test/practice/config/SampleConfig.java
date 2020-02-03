@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class SampleConfig {
@@ -20,14 +21,17 @@ public class SampleConfig {
 
     @Bean
     CommandLineRunner createAccounts() {
-        return (String... args) -> accountRepository.save(Arrays.asList(
-                Account.forCreate(20_000L, "mandoo"),
-                Account.forCreate(50_000L, "jordan"),
-                Account.forCreate(100_000L, "dongmyo"),
-                Account.forCreate(1_000L, "doogi"),
-                Account.forCreate(0L, "comtin"),
-                Account.forCreate(2_000_000L, "franky"),
-                Account.forCreate(30_000, "manty"),
-                Account.forCreate(20_000, "bureung")));
+        return (String... args) -> {
+            List<Account> accounts = Arrays.asList(
+                    new Account(20_000L, "mandoo"),
+                    new Account(50_000L, "jordan"),
+                    new Account(100_000L, "dongmyo"),
+                    new Account(1_000L, "doogi"),
+                    new Account(0L, "comtin"),
+                    new Account(2_000_000L, "franky"),
+                    new Account(30_000, "manty"),
+                    new Account(20_000, "bureung"));
+            accountRepository.saveAll(accounts);
+        };
     }
 }

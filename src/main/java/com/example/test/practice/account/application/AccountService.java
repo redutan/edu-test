@@ -22,10 +22,7 @@ public class AccountService {
     }
 
     public Account getAccount(Long accountId) {
-        Account result = accountRepository.findOne(accountId);
-        if (result == null) {
-            throw new AccountNotFoundException(accountId);
-        }
-        return result;
+        return accountRepository.findById(accountId)
+                                .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 }

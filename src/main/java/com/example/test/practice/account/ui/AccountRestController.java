@@ -20,12 +20,12 @@ public class AccountRestController {
     }
 
     @GetMapping("/api/accounts")
-    List<Account> accounts() {
+    public List<Account> accounts() {
         return accountService.getAccounts();
     }
 
     @GetMapping("/api/accounts/{accountId}")
-    Account account(@PathVariable Long accountId) {
+    public Account account(@PathVariable Long accountId) {
         return accountService.getAccount(accountId);
     }
 }

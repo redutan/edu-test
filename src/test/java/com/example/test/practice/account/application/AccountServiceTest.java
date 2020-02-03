@@ -6,7 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
@@ -28,13 +30,13 @@ public class AccountServiceTest {
         // given
         final Long accountId = 12L;
 
-        Account account = Account.forCreate(10_000, "jordan");
-        when(accountRepository.findOne(accountId)).thenReturn(account);
+        Account account = new Account(10_000, "jordan");
+        when(accountRepository.findById(accountId)).thenReturn(Optional.of(account));
         // when
         Account result = accountService.getAccount(accountId);
         // then
         assertThat(result, is(account));
-        verify(accountRepository, times(1)).findOne(accountId);
+        verify(accountRepository).findById(accountId);
     }
 
     @Test(expected = AccountNotFoundException.class)
@@ -42,7 +44,7 @@ public class AccountServiceTest {
         // given
         final Long accountId = 13L;
 
-        when(accountRepository.findOne(accountId)).thenReturn(null);
+        when(accountRepository.findById(accountId)).thenReturn(Optional.empty());
         // when
         @SuppressWarnings("unused")
         Account result = accountService.getAccount(accountId);
