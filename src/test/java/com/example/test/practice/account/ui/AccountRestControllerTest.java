@@ -5,6 +5,8 @@ import com.example.test.practice.account.application.AccountService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,8 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * hint : @Web___Test(AccountRestController.class)
  */
+@WebMvcTest
 public class AccountRestControllerTest {
-    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     MockMvc mockMvc;
 
@@ -36,6 +38,7 @@ public class AccountRestControllerTest {
      * <p>
      * hint : @M___B___
      */
+    @MockBean
     AccountService accountService;
 
     @Test
@@ -49,12 +52,12 @@ public class AccountRestControllerTest {
                                 .accept(MediaType.APPLICATION_JSON))
                // then
                // TODO 1-3: 요청의 결과는 200 OK 입니다. 검증 코드를 수정해 주세요.
-               .andExpect(status().isNotFound())
+               .andExpect(status().isOk())
                .andExpect(jsonPath("$.accountId").value(account.getAccountId()))
-               .andExpect(jsonPath("$.balance").value(account.getDepositor()))
+               .andExpect(jsonPath("$.balance").value(account.getBalance()))
         ;
         // then2
         // TODO 1-4: 이 테스트케이스에서 accountService 는 1회 실행됩니다. 아래에서 잘 못된 부분을 수정해 주세요.
-        then(accountService).should(times(2)).getAccount(accountId);
+        then(accountService).should(times(1)).getAccount(accountId);
     }
 }

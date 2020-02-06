@@ -33,9 +33,9 @@ public class RefundServiceTest {
         // TODO 3-1: 테스트가 성공할 수 있게 환불수수료를 적절하게 수정하시오
         return Arrays.asList(new Object[][]{
                 {9999L, 0L},
-                {10000L, 0L},
-                {49999L, 0L},
-                {50000L, 0L}
+                {10000L, 1_000L},
+                {49999L, 4_999L},
+                {50000L, 10_000L}
         });
     }
 

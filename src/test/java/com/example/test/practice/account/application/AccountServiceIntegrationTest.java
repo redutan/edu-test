@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -53,8 +54,8 @@ public class AccountServiceIntegrationTest {
         // then
         assertThat(account.getAccountId(), is(accountId));
         // TODO 2-1: 테스트가 통과할 수 있도록 아래 코드들을 수정해 주세요.
-        assertThat(account.getBalance(), is(0L));
-        assertThat(account.getDepositor(), is(""));
-        assertThat(account.getCreatedAt(), is(lessThan(null)));
+        assertThat(account.getBalance(), is(20_000L));
+        assertThat(account.getDepositor(), is("mandoo"));
+        assertThat(account.getCreatedAt(), is(lessThan(ZonedDateTime.now())));
     }
 }
